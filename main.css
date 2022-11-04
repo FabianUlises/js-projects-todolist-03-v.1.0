@@ -6,10 +6,10 @@
 body {
     background-color: firebrick;
     min-height: 100vh;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     font-family: sans-serif;
     padding-top: 1rem;
 }
@@ -28,13 +28,14 @@ ul {
 .page-title {
     color: navajowhite;
     padding-bottom: 2rem;
-    font-size: 3rem;
+    font-size: 1.8rem;
     text-align: center;
 }
 .item-container {
 /*    background-color: orange;*/
     width: 300px;
     padding-bottom: 1rem;
+    margin: 0 auto;
 }
 /* Start of item header */
 .item-header {
@@ -44,6 +45,7 @@ ul {
     border-top-right-radius: 1rem;
     display: flex;
     flex-direction: column;
+    margin-top: 5rem;
 }
 .clear {
     display: flex;
@@ -107,7 +109,7 @@ ul {
     transition: all 250ms ease;
 }
 .fa-trash:hover {
-    color: #8c908f;
+    color: #707070;
 }
 .item {
     display: flex;

@@ -3,6 +3,7 @@ const clear = document.querySelector('.fa-refresh');
 const dateElement = document.querySelector('.date');
 const list = document.getElementById('todo-list');
 const input = document.getElementById('itemInput');
+const taskBtn = document.querySelector('.fa-plus-circle');
 // Class names
 const check = 'fa-check-circle';
 const uncheck = 'fa-circle';
@@ -49,6 +50,8 @@ const completeTask = (task) => {
 const removeTask = (task) => {
     task.parentNode.parentNode.removeChild(task.parentNode);
     // taskList[task.id].tash = true;
+    const taskItem = task.parentNode.querySelector('.text').textContent;
+    console.log(taskItem);
 };
 // Load data from localstorage
 let data = localStorage.getItem('Tasks');
@@ -101,4 +104,27 @@ document.addEventListener('keyup', (e) => {
 clear.addEventListener('click', () => {
     localStorage.clear();
     location.reload();
+    input.value = ' ';
+
 });
+taskBtn.addEventListener('click', () => {
+    // Set user input to variable
+    const task = input.value;
+    // If input wasnt empty run
+    if(task) {
+        // Run addtask function to create task
+        addTask(task, id, false, false);
+        // Add task to array
+        taskList.push({
+            name: task,
+            id: id,
+            done: false,
+            trash: false
+        });
+        id++
+        // Add taks to localstorage
+        localStorage.setItem('Tasks', JSON.stringify(taskList));
+    }
+    // Reset input
+    input.value = ' ';
+})
