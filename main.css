@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: firebrick;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+ul {
+    list-style: none;
+}
+.item-container {
+/*    background-color: orange;*/
+    width: 300px;
+}
+/* Start of item header */
+.item-header {
+    background: url('./bg.jpg')center center/cover;
+    height: 200px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.clear {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: .4rem;
+    font-size: 1.5rem;
+}
+.fa-refresh:hover {
+    cursor: pointer;
+}
+.date {
+    background-color: rgba(234, 48, 48, 0.38);
+    color: white;
+    margin-top: auto;
+    padding: .4rem;
+    font-size: 1.25rem;
+    font-weight: lighter;
+}
+/* End of item header */
+/* Start of item content */
+/* Start of todo list */
+.item-content {
+/*    background-color:firebrick;*/
+    padding: .3rem;
+}
+#todo-list {
+    font-size: 1.8rem;
+    letter-spacing: .1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: navajowhite;
+    word-break: break-all;
+    padding-top: 1rem;
+}
+#todo-list li {
+    border-bottom: 2px solid navajowhite;
+    padding-bottom: .5rem;
+}
+#todo-list li:last-child{
+    border-bottom: none;
+}
+/* End of todo list */
+/* End of item content */
+/* Start of item buttons */
+.add-item {
+    display: flex;
+    gap: .4rem;
+    font-size: 1.5rem;
+    align-items: center;
+}
+.add-item input {
+    width: 75%;
+    flex: 1;
+    outline: none;
+    border: 2px solid transparent;
+    font-size: 1.25rem;
+    padding: .2rem;
+    text-align: center;
+    color: red;
+    
+    font-weight: lighter;
+}
+.add-item input:focus {
+    border: 2px solid rgba(81, 203, 238, 1);
+}
+.fa-plus-circle:hover {
+    cursor: pointer;
+}
+/* End of item buttons */
