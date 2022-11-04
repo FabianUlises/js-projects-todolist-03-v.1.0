@@ -35,8 +35,15 @@ ul {
     padding: .4rem;
     font-size: 1.5rem;
 }
+.fa-refresh {
+    transition: all 250ms ease;
+}
 .fa-refresh:hover {
     cursor: pointer;
+    color: whitesmoke;
+}
+.fa-refresh:active {
+    color: rgba(245, 245, 245, 0.500);
 }
 .date {
     background-color: rgba(234, 48, 48, 0.38);
@@ -88,13 +95,19 @@ ul {
     padding: .2rem;
     text-align: center;
     color: red;
-    
     font-weight: lighter;
 }
 .add-item input:focus {
     border: 2px solid rgba(81, 203, 238, 1);
 }
+.fa-plus-circle {
+    transition: all 250ms ease;
+}
 .fa-plus-circle:hover {
     cursor: pointer;
+    color: whitesmoke;
+}
+.fa-plus-circle:active {
+    color: rgba(245, 245, 245, 0.500);
 }
 /* End of item buttons */
