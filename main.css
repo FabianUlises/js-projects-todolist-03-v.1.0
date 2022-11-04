@@ -5,19 +5,36 @@
 }
 body {
     background-color: firebrick;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
+    padding-top: 1rem;
 }
 ul {
     list-style: none;
 }
+.fa:hover {
+    cursor: pointer;
+}
+.lineThrough {
+    text-decoration: line-through;
+    opacity: .7;
+    filter: blur(.5px);
+
+}
+.page-title {
+    color: navajowhite;
+    padding-bottom: 2rem;
+    font-size: 3rem;
+    text-align: center;
+}
 .item-container {
 /*    background-color: orange;*/
     width: 300px;
+    padding-bottom: 1rem;
 }
 /* Start of item header */
 .item-header {
@@ -39,7 +56,6 @@ ul {
     transition: all 250ms ease;
 }
 .fa-refresh:hover {
-    cursor: pointer;
     color: whitesmoke;
 }
 .fa-refresh:active {
@@ -61,8 +77,8 @@ ul {
     padding: .3rem;
 }
 #todo-list {
-    font-size: 1.8rem;
-    letter-spacing: .1rem;
+    font-size: 1.5rem;
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -76,6 +92,30 @@ ul {
 }
 #todo-list li:last-child{
     border-bottom: none;
+}
+.fa-circle {
+    color: transparent;
+    border: 2.5px outset black;
+    border-radius: 1rem;
+}
+.fa-check-circle {
+    border: 2.5px solid transparent;
+    border-radius: 1rem;
+    color: green;
+}
+.fa-trash {
+    transition: all 250ms ease;
+}
+.fa-trash:hover {
+    color: #8c908f;
+}
+.item {
+    display: flex;
+    align-items: center;
+}
+.item .text {
+    flex: 1;
+    text-align: center;
 }
 /* End of todo list */
 /* End of item content */
