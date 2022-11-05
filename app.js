@@ -62,18 +62,21 @@ const removeTask = (task) => {
     const el = task.parentNode.querySelector('.taskId');
     const taskId = el.getAttribute('id');
     // Set task object trash field to true
-    // taskList[taskId].tash = true;
-    // Remove task
+    taskList[taskId].tash = true;
+    // Return array without deleted task
     const newList = taskList.filter(task => {
         return task.id !== taskId && task.name !== taskName;
     });
     // Update localstorage with updated tasks
     localStorage.setItem('Tasks', JSON.stringify(newList));
+    // Remove element from dom
     task.parentNode.parentNode.removeChild(task.parentNode);
 };
 // Function to compelete task
 const completeTask = (task) => {
+    // Get task content from dom
     const taskName = task.parentNode.querySelector('.text').textContent;
+    // Get index of array
     const taskIndex = taskList.findIndex(el => {
         return el.name === taskName;
     });
