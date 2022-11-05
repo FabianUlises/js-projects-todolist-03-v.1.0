@@ -59,13 +59,15 @@ if(data) {
 const removeTask = (task) => {
     // Get text content of task
     const taskName = task.parentNode.querySelector('.text').textContent;
-    const el = task.parentNode.querySelector('.taskId');
-    const taskId = el.getAttribute('id');
+    // Get index of array
+    const taskIndex = taskList.findIndex(el => {
+        return el.name === taskName;
+    });
     // Set task object trash field to true
-    taskList[taskId].tash = true;
+    taskList[taskIndex].tash = true;
     // Return array without deleted task
     const newList = taskList.filter(task => {
-        return task.id !== taskId && task.name !== taskName;
+        return task.id !== taskIndex && task.name !== taskName;
     });
     // Update localstorage with updated tasks
     localStorage.setItem('Tasks', JSON.stringify(newList));
@@ -142,6 +144,7 @@ clear.addEventListener('click', () => {
     input.value = ' ';
 
 });
+
 taskBtn.addEventListener('click', () => {
     // Set user input to variable
     const task = input.value;
