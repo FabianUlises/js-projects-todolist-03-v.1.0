@@ -1,5 +1,5 @@
 # Js-Projects-Todolist-3 v.1.0
-## fully working with localstorage
+## Fully working with localstorage
 Able to add task, mark as compelte and delete. <br />
 Using innerhtml and functions.
 ## BUGS
