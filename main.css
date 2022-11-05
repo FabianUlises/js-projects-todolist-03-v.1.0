@@ -28,8 +28,9 @@ ul {
 .page-title {
     color: navajowhite;
     padding-bottom: 2rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     text-align: center;
+    max-width: 780px;
 }
 .item-container {
 /*    background-color: orange;*/
@@ -101,9 +102,10 @@ ul {
     border-radius: 1rem;
 }
 .fa-check-circle {
-    border: 2.5px solid transparent;
+    border: 2.5px solid green;
     border-radius: 1rem;
     color: green;
+    background: white;
 }
 .fa-trash {
     transition: all 250ms ease;

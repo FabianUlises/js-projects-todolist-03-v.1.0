@@ -22,16 +22,16 @@ const loadList = (arr) => {
 };
 // Function to add task
 const addTask = (todo, id, done, trash) => {
+    if(trash) {return;}
     if(todo == ' ') {
         return;
     }
-    if(trash) {return;}
     const finished = done ? check : uncheck;
     const line = done ? lineThrough : '';
     // Creating element using template literals
     const item = `
                     <li class="item">
-                        <i class="fa ${finished}" job="complete" id=${id}></i>
+                        <i class="fa ${finished} taskId" job="complete" id=${id}></i>
                         <p class="text ${line}">${todo}</p>
                         <i class="fa fa-trash" job="delete" id=${id}></i>
                     </li>
@@ -39,42 +39,74 @@ const addTask = (todo, id, done, trash) => {
     // Inserting item to page
     list.insertAdjacentHTML('beforeend', item);
 };
-// Function to compelete task
-const completeTask = (task) => {
-    task.classList.toggle(check);
-    task.classList.toggle(uncheck);
-    task.parentNode.querySelector('.text').classList.toggle(lineThrough);
-    taskList[task.id].done = taskList[task.id].done ? false : true;
-};
-// Function to remove task
-const removeTask = (task) => {
-    task.parentNode.parentNode.removeChild(task.parentNode);
-    // taskList[task.id].tash = true;
-    const taskItem = task.parentNode.querySelector('.text').textContent;
-    console.log(taskItem);
-};
 // Load data from localstorage
 let data = localStorage.getItem('Tasks');
+// Only load data if their is data
 if(data) {
+    // Parse the data
     taskList = JSON.parse(data);
+    // Set id = to length of data
     id = taskList.length;
+    // Run load function
     loadList(taskList);
+    // If no data set run
 } else {
     taskList = [];
     id = 0;
 }
+
+// Function to remove task
+const removeTask = (task) => {
+    // Get text content of task
+    const taskName = task.parentNode.querySelector('.text').textContent;
+    const el = task.parentNode.querySelector('.taskId');
+    const taskId = el.getAttribute('id');
+    // Set task object trash field to true
+    // taskList[taskId].tash = true;
+    // Remove task
+    const newList = taskList.filter(task => {
+        return task.id !== taskId && task.name !== taskName;
+    });
+    // Update localstorage with updated tasks
+    localStorage.setItem('Tasks', JSON.stringify(newList));
+    task.parentNode.parentNode.removeChild(task.parentNode);
+};
+// Function to compelete task
+const completeTask = (task) => {
+    const taskName = task.parentNode.querySelector('.text').textContent;
+    const taskIndex = taskList.findIndex(el => {
+        return el.name === taskName;
+    });
+    console.log(taskIndex);
+    // Toggle classes
+    task.classList.toggle(check);
+    task.classList.toggle(uncheck);
+    task.parentNode.querySelector('.text').classList.toggle(lineThrough);
+    // Change task object done field to true or false
+    taskList[taskIndex].done = taskList[taskIndex].done ? false : true;
+    localStorage.setItem('Tasks', JSON.stringify(taskList));
+};
+
+
 // Adding event listener to click on li targeting the buttons
 list.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Set task to clicked element
     const task = e.target;
+    // Get task tag attribute
     const taskJob = task.attributes.job.value;
+    // If clicked element has complete attriute run
     if(taskJob == 'complete') {
+        // Run complete task function
         completeTask(task);
+        // If clicked element has delete attribute run
     } else if(taskJob == 'delete') {
+        // Run removetask function
         removeTask(task);
+        // Else return
     } else {
         return;
     }
-    localStorage.setItem('Tasks', JSON.stringify(taskList));
 });
 // Adding event listener to keydown on enter press
 document.addEventListener('keyup', (e) => {
@@ -83,7 +115,7 @@ document.addEventListener('keyup', (e) => {
         // Set user input to variable
         const task = input.value;
         // If input wasnt empty run
-        if(task) {
+        if(task != ' ') {
             // Run addtask function to create task
             addTask(task, id, false, false);
             // Add task to array
